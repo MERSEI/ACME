@@ -35,7 +35,7 @@ export function RoomsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex animate-in items-center justify-between gap-4 fade-in-0 slide-in-from-bottom-1 duration-300 ease-out">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Data rooms</h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -67,10 +67,11 @@ export function RoomsPage() {
         </EmptyState>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {rooms.map((room) => (
+          {rooms.map((room, i) => (
             <RoomCard
               key={room.id}
               room={room}
+              index={i}
               onRename={() => setDialog({ kind: 'rename', room })}
               onDelete={() => setDialog({ kind: 'delete', room })}
             />

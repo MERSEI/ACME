@@ -144,22 +144,22 @@ export function FolderPage() {
 
   const parentHref = currentFolder?.parentId
     ? `/room/${room.id}/folder/${currentFolder.parentId}`
-    : `/room/${room.id}`
+    : currentFolderId
+      ? `/room/${room.id}`
+      : '/'
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-1.5">
-        {currentFolderId && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="-ml-1.5 h-7 w-7 shrink-0"
-            onClick={() => navigate(parentHref)}
-            aria-label="Back to parent folder"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-        )}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="group/back -ml-1.5 h-7 w-7 shrink-0"
+          onClick={() => navigate(parentHref)}
+          aria-label={currentFolderId ? 'Back to parent folder' : 'Back to data rooms'}
+        >
+          <ArrowLeft className="h-4 w-4 transition-transform duration-150 group-hover/back:-translate-x-0.5" />
+        </Button>
         <Breadcrumbs room={room} chain={chain} />
       </div>
 

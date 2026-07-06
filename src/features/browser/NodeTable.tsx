@@ -36,7 +36,7 @@ interface NodeTableProps {
 
 export function NodeTable({ rows, showPath = false, onOpen, onRename, onDelete, onDownload }: NodeTableProps) {
   return (
-    <div className="rounded-lg border">
+    <div className="animate-in overflow-hidden rounded-lg border fade-in-0 duration-300 ease-out">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">
@@ -57,7 +57,10 @@ export function NodeTable({ rows, showPath = false, onOpen, onRename, onDelete, 
                   className="flex w-full min-w-0 items-center gap-2.5 text-left focus-visible:outline-2 focus-visible:outline-ring"
                 >
                   {entry.type === 'folder' ? (
-                    <Folder className="h-4 w-4 shrink-0 fill-muted-foreground/20 text-muted-foreground" aria-hidden />
+                    <Folder
+                      className="h-4 w-4 shrink-0 fill-muted-foreground/20 text-muted-foreground transition-colors group-hover:fill-primary/20 group-hover:text-primary"
+                      aria-hidden
+                    />
                   ) : (
                     <FileText className="h-4 w-4 shrink-0 text-red-500/80" aria-hidden />
                   )}
@@ -84,6 +87,7 @@ export function NodeTable({ rows, showPath = false, onOpen, onRename, onDelete, 
                       <Button
                         variant="ghost"
                         size="icon"
+                        className="opacity-60 transition-opacity duration-150 group-hover:opacity-100 focus-visible:opacity-100 data-popup-open:opacity-100"
                         aria-label={`Actions for ${entry.name}`}
                       />
                     }

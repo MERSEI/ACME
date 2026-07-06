@@ -47,9 +47,9 @@ export function DropZone({ onFiles, uploadState, children }: DropZoneProps) {
       {children}
 
       {isOver && (
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-primary bg-background/90">
+        <div className="animate-in pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-primary bg-background/90 fade-in-0 zoom-in-95 backdrop-blur-sm duration-200 ease-out">
           <div className="flex flex-col items-center gap-2 text-center">
-            <UploadCloud className="h-10 w-10 text-primary" aria-hidden />
+            <UploadCloud className="h-10 w-10 animate-bounce text-primary" aria-hidden />
             <p className="font-medium">Drop PDF files to upload</p>
             <p className="text-sm text-muted-foreground">Files land in the current folder</p>
           </div>
@@ -57,7 +57,7 @@ export function DropZone({ onFiles, uploadState, children }: DropZoneProps) {
       )}
 
       {uploadState.active && (
-        <Card className="fixed bottom-4 right-4 z-50 w-72 gap-2 p-4 shadow-lg">
+        <Card className="animate-in fixed bottom-4 right-4 z-50 w-72 gap-2 p-4 fade-in-0 slide-in-from-bottom-4 shadow-lg duration-300 ease-out">
           <p className="text-sm font-medium">
             Uploading {uploadState.count} file{uploadState.count === 1 ? '' : 's'}…
           </p>
