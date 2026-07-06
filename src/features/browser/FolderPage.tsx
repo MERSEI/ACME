@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
-import { FolderPlus, FolderOpen, Search, SearchX, Upload, X } from 'lucide-react'
+import { ArrowLeft, FolderPlus, FolderOpen, Search, SearchX, Upload, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -142,9 +142,26 @@ export function FolderPage() {
       ? siblingNames(entries, dialog.entry.parentId, dialog.entry.id)
       : new Set<string>()
 
+  const parentHref = currentFolder?.parentId
+    ? `/room/${room.id}/folder/${currentFolder.parentId}`
+    : `/room/${room.id}`
+
   return (
     <div className="space-y-4">
-      <Breadcrumbs room={room} chain={chain} />
+      <div className="flex items-center gap-1.5">
+        {currentFolderId && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="-ml-1.5 h-7 w-7 shrink-0"
+            onClick={() => navigate(parentHref)}
+            aria-label="Back to parent folder"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+        )}
+        <Breadcrumbs room={room} chain={chain} />
+      </div>
 
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative w-full sm:w-72">
